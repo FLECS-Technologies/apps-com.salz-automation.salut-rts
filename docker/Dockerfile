@@ -2,7 +2,7 @@ ARG ARCH
 ARG VERSION
 ARG VARIANT
 
-FROM scratch:${VERSION}
+FROM flecsbikubernetes.azurecr.io/com.salz.salut:${VERSION}
 
 ARG ARCH
 ARG VERSION
