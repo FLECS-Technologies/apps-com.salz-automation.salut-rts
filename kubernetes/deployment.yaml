@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salut-test
+  labels:
+    app: salut-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salut-test
+  template:
+    metadata:
+      labels:
+        app: salut-test
+    spec:
+      containers:
+        - name: salut-test
+          image: flecsbikubernetes.azurecr.io/com.salz.salut:1.0.0.0NOIPC
+          securityContext:
+            capabilities:
+              add: ['IPC_LOCK']
+          ports:
+            - containerPort: 502
+            - containerPort: 1534
