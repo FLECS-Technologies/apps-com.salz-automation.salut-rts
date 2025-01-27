@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-salut-modbus-service
+  labels:
+    app: salut-modbus
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: salut-modbus
+  ports:
+{{- range .Values.service.ports }}
+    - protocol: TCP
+      name: {{ .name }}
+      port: {{ .port }}
+      targetPort: {{ .targetPort }}
+{{- end }}
