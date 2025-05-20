@@ -11,5 +11,5 @@ spec:
           helm:
             chartName: salut-modbus-chart
             chartVersion: 0.1.0
-            url: https://github.com/FLECS-Technologies/apps-com.salz-automation.salut-rts
+            url: https://github.com/FLECS-Technologies/apps-com.salz-automation.salut-rts/tree/93550436790808ed4e344ccb28551ceb6b2ee15d/helm-chart
       version: 0.1.0
