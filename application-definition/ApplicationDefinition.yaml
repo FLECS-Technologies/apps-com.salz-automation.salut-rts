@@ -1,0 +1,15 @@
+apiVersion: apps.kubermatic.k8c.io/v1
+kind: ApplicationDefinition
+metadata:
+  name: salut-modbus-chart
+spec:
+  description: SALZ Automation SALut Runtime
+  method: helm
+  versions:
+    - template:
+        source:
+          helm:
+            chartName: salut-modbus-chart
+            chartVersion: 0.1.0
+            url: https://github.com/FLECS-Technologies/apps-com.salz-automation.salut-rts
+      version: 0.1.0
