@@ -3,13 +3,41 @@ kind: ApplicationDefinition
 metadata:
   name: salut-modbus-chart
 spec:
-  description: SALZ Automation SALut Runtime
+  displayName: SALZ Automation SALut Runtime
+  description: IEC61131-3 Runtime.
   method: helm
   versions:
     - template:
         source:
-          helm:
-            chartName: salut-modbus-chart
-            chartVersion: 0.1.0
-            url: https://github.com/FLECS-Technologies/apps-com.salz-automation.salut-rts/tree/93550436790808ed4e344ccb28551ceb6b2ee15d/helm-chart
+          git:
+            path: helm-chart
+            ref:
+              branch: main
+            remote: https://github.com/FLECS-Technologies/apps-com.salz-automation.salut-rts.git
       version: 0.1.0
+  defaultValuesBlock: |
+    replicaCount: 1
+    image:
+      repository: flecsbikubernetes.azurecr.io/com.salz.salut
+      tag: modbus
+      pullPolicy: IfNotPresent
+
+    service:
+      type: LoadBalancer
+      ports:
+        - name: modbus
+          port: 502
+          targetPort: 502
+        - name: salut
+          port: 1534
+          targetPort: 1534
+
+    #tolerations:
+    #  - key: 'node.kubernetes.io/unreachable'
+    #    operator: 'Exists'
+    #    effect: 'NoExecute'
+    #    tolerationSeconds: 10
+    #  - key: 'node.kubernetes.io/not-ready'
+    #    operator: 'Exists'
+    #    effect: 'NoExecute'
+    #    tolerationSeconds: 10
