@@ -1,7 +1,7 @@
 salut:
   name: salut
   image: flecsbikubernetes.azurecr.io/com.salz.salut:opc
-  port: 48040
+  port: 48010
 
 nodered:
   name: nodered
