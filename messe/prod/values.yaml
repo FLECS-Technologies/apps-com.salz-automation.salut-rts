@@ -1,0 +1,8 @@
+salut:
+  name: salut
+  image: flecsbikubernetes.azurecr.io/com.salz.salut:opc
+  port: 48040
+
+nodered:
+  name: nodered
+  image: flecsbikubernetes.azurecr.io/nodered/salut:prod

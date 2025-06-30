@@ -1,0 +1,4 @@
+apiVersion: v2
+name: salut-nodered-prod-chart
+description: A Helm chart for deploying salut-modbus and nodered
+version: 0.1.0
