@@ -1,34 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-salut-modbus
-  labels:
-    app: salut-modbus
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+  name: {{ .Release.Name }}-salut-nodered
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: salut-modbus
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: salut-modbus
+        app: {{ .Release.Name }}
     spec:
       containers:
-        - name: salut-modbus
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          securityContext:
-            capabilities:
-              add: ["IPC_LOCK"]
+        - name: {{ .Values.salut.name }}
+          image: {{ .Values.salut.image }}
           ports:
-            - containerPort: 502
-            - containerPort: 1534
-      tolerations:
-{{- range .Values.tolerations }}
-        - key: "{{ .key }}"
-          operator: "{{ .operator }}"
-          effect: "{{ .effect }}"
-          tolerationSeconds: {{ .tolerationSeconds }}
-{{- end }}
+            - containerPort: {{ .Values.salut.port }}
+
+        - name: {{ .Values.nodered.name }}
+          image: {{ .Values.nodered.image }}

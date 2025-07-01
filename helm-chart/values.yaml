@@ -1,25 +1,8 @@
-replicaCount: 1
-image:
-  repository: flecsbikubernetes.azurecr.io/com.salz.salut
-  tag: modbus
-  pullPolicy: IfNotPresent
+salut:
+  name: salut
+  image: flecsbikubernetes.azurecr.io/com.salz.salut:opc
+  port: 48010
 
-service:
-  type: LoadBalancer
-  ports:
-    - name: modbus
-      port: 502
-      targetPort: 502
-    - name: salut
-      port: 1534
-      targetPort: 1534
-
-tolerations:
-  - key: 'node.kubernetes.io/unreachable'
-    operator: 'Exists'
-    effect: 'NoExecute'
-    tolerationSeconds: 10
-  - key: 'node.kubernetes.io/not-ready'
-    operator: 'Exists'
-    effect: 'NoExecute'
-    tolerationSeconds: 10
+nodered:
+  name: nodered
+  image: flecsbikubernetes.azurecr.io/nodered/salut:prod
