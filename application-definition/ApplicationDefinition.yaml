@@ -1,7 +1,7 @@
 apiVersion: apps.kubermatic.k8c.io/v1
 kind: ApplicationDefinition
 metadata:
-  name: salut-modbus-chart
+  name: salut-nodered-chart
 spec:
   displayName: SALZ Automation SALut Runtime
   description: IEC61131-3 Runtime.
