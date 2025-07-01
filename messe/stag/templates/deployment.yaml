@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-salut-nodered
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Values.salut.name }}
+          image: {{ .Values.salut.image }}
+          ports:
+            - containerPort: {{ .Values.salut.port }}
+
+        - name: {{ .Values.nodered.name }}
+          image: {{ .Values.nodered.image }}
